@@ -213,6 +213,7 @@ class FreeTextResponseViewMixin(
         """
         # Fails if the UI submit/save buttons were shut
         # down on the previous sumbisson
+        emit_event = False
         if self._can_submit():
             self.student_answer = data['student_answer']
             # Counting the attempts and publishing a score
@@ -220,10 +221,14 @@ class FreeTextResponseViewMixin(
             self.count_attempts += 1
             self._compute_score()
             display_other_responses = self.display_other_student_responses
+            emit_event = True
             if display_other_responses and data.get('can_record_response'):
                 self.store_student_response()
         result = {
             'status': 'success',
+            'prompt': self.prompt,
+            'weight': self.weight,
+            'ungraded': self.weight == 0,
             'problem_progress': self._get_problem_progress(),
             'indicator_class': self._get_indicator_class(),
             'used_attempts_feedback': self._get_used_attempts_feedback(),
@@ -236,6 +241,8 @@ class FreeTextResponseViewMixin(
             'display_other_responses': self.display_other_student_responses,
             'visibility_class': self._get_indicator_visibility_class(),
         }
+        if emit_event:
+            self.runtime.publish(self, 'xblock.freetextresponse.submit', result)
         return result
 
     @XBlock.json_handler

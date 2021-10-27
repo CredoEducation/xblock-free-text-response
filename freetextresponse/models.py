@@ -142,7 +142,7 @@ class FreeTextResponseModelMixin(object):
             'This assigns an integer value representing '
             'the weight of this problem'
         ),
-        default=0,
+        default=1,
         values={'min': 1},
         scope=Scope.settings,
     )

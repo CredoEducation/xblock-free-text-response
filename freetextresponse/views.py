@@ -227,7 +227,9 @@ class FreeTextResponseViewMixin(
         result = {
             'status': 'success',
             'prompt': self.prompt,
+            'answer': self.student_answer,
             'weight': self.weight,
+            'attempt_num': self.count_attempts,
             'ungraded': self.weight == 0,
             'problem_progress': self._get_problem_progress(),
             'indicator_class': self._get_indicator_class(),

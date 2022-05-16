@@ -6,19 +6,16 @@
 .freetextresponse .user_input.unanswered .status {
   width: 14px;
   height: 14px;
-  background: url("images/unanswered-icon.png") center center no-repeat;
 }
 
 .freetextresponse .user_input.correct .status {
   width: 25px;
   height: 20px;
-  background: url("images/correct-icon.png") center center no-repeat;
 }
 
 .freetextresponse .user_input.incorrect .status {
   width: 20px;
   height: 20px;
-  background: url("images/incorrect-icon.png") center center no-repeat;
 }
 
 .freetextresponse .user_input .student_answer {

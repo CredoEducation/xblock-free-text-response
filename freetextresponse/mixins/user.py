@@ -1,7 +1,6 @@
 """
 Extend XBlock with additional user functionality
 """
-from six import text_type
 
 
 # pylint: disable=too-few-public-methods
@@ -14,9 +13,8 @@ class MissingDataFetcherMixin(object):
         Get the student id.
         """
         if hasattr(self, 'xmodule_runtime'):
-            student_id = self.xmodule_runtime.anonymous_student_id
-            # pylint:disable=E1101
+            user_service = self.runtime.service(self, 'user')
+            student_id = user_service.get_current_user().opt_attrs.get('edx-platform.anonymous_user_id')
         else:
             student_id = self.scope_ids.user_id or ''
-            student_id = text_type(student_id)
         return student_id

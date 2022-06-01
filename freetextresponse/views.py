@@ -1,7 +1,6 @@
 """
 Handle view logic for the XBlock
 """
-from six import text_type
 from xblock.core import XBlock
 from xblock.validation import ValidationMessage
 from xblockutils.resources import ResourceLoader
@@ -312,7 +311,7 @@ class FreeTextResponseViewMixin(
         """
         result = ValidationMessage(
             ValidationMessage.ERROR,
-            self.gettext(text_type(text))
+            self.gettext(text)
         )
         return result
 

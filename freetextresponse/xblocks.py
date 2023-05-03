@@ -10,6 +10,7 @@ from .views import FreeTextResponseViewMixin
 
 
 @XBlock.needs('i18n')
+@XBlock.needs('user')
 class FreeTextResponse(
         FreeTextResponseModelMixin,
         FreeTextResponseViewMixin,

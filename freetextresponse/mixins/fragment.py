@@ -22,6 +22,7 @@ class XBlockFragmentBuilderMixin(object):
     ]
     static_js_init = None
     template = 'view.html'
+    has_author_view = True
 
     def provide_context(self, context):  # pragma: no cover
         """
@@ -32,6 +33,12 @@ class XBlockFragmentBuilderMixin(object):
         context = context or {}
         context = dict(context)
         return context
+
+    def author_view(self, context=None):
+        """
+        Renders the Studio preview view.
+        """
+        return self.student_view(context)
 
     @XBlock.supports('multi_device')
     def student_view(self, context=None):
